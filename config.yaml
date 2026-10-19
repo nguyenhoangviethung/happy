@@ -28,10 +28,55 @@ theme: 1
 # 4. Nhạc nền (Tên file âm thanh đặt cùng thư mục)
 music: "./music.mp3"
 
-# 5. Nội dung bức thư (Mỗi gạch đầu dòng là một đoạn văn, hỗ trợ emoji ❤️✨):
+# 5. Nội dung bức thư (Mỗi gạch đầu dòng là 1 đoạn văn, thoải mái chèn emoji ❤️✨):
 messages:
-  - "Gửi em yêu thương,"
   - "Anh sẽ đón em vào một ngày không xa..."
-  - "Cảm ơn em vì đã luôn ở bên cạnh anh, mang đến cho anh những nụ cười rạng rỡ và những khoảnh khắc ấm áp nhất."
-  - "Chúc em luôn vui vẻ, xinh đẹp và hạnh phúc mỗi ngày! ❤️✨"
-  - "Yêu em rất nhiều!"
+  - "Mỗi ngày nhắn tin với cậu tớ đều thấy rất vui."
+  - "Hi vọng thời gian tới tớ sẽ có cơ hội được vui nhiều hơn. ❤️✨ ❤️✨"
+
+# =========================================================================
+# 🎁 NÚT 1: CHỌN MÓN QUÀ (GIFT CONFIG)
+# =========================================================================
+gift:
+  button_text: "Gift"
+  title: "Món Quà Dành Riêng Cho Em"
+  # Bạn có thể để link ảnh online hoặc file ảnh cùng thư mục (ví dụ: ./gift.jpg)
+  image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop"
+  message: "Một món quà nhỏ cùng tất cả sự yêu thương và chiều chuộng dành riêng cho em. Mong rằng nụ cười rạng rỡ này sẽ luôn nở trên môi em nhé! ❤️"
+
+# =========================================================================
+# 📅 NÚT 2: RỦ ĐI CHƠI & NÚT TROLL "KHÔNG ĐI" (DATE PLANNER CONFIG)
+# =========================================================================
+# Bạn chỉ cần hỏi có đi hay không, không cần chọn giờ hay địa điểm rườm rà:
+date_plan:
+  # Cấu hình nút & modal hỏi đi chơi:
+  button_text: "Đi chơi hong"
+  title: "Đi chơi với anh nhé? 🥰"
+  subtitle: "Anh đón em đi dạo phố và ăn những món em thích nha! ❤️"
+  agree_button_text: "Đi lun chứ! 🥰"
+  refuse_button_text: "Không đi 😜"
+
+  # Cấu hình nội dung màn hình chốt kèo thành công:
+  success_title: "CHỐT KÈO THÀNH CÔNG! 🎉"
+  success_subtitle: "Anh biết là em sẽ đồng ý mà! Anh qua đón em liền nha! Hehe ❤️"
+  success_troll_prefix: "Bật mí: Em đã bấm nút \"Không đi\" tận {count} lần nhưng cuối cùng vẫn đồng ý nè! ❤️"
+  
+  # Cấu hình nút gửi qua Bot Zalo (Bấm là gửi thẳng tin nhắn về Zalo của anh, không cần mở app):
+  success_button_text: "💬 Báo cho anh qua Zalo liền nha!"
+  success_sent_text: "✅ Đã gửi tới Zalo của anh rùi nè! 🥰"
+  success_status_text: "🎉 Ting ting! Tin nhắn đã bay thẳng tới Zalo của anh rùi nha! ❤️ Em chỉ cần chuẩn bị thật xinh rồi chờ anh qua đón nhen! ✨"
+  success_bot_message: "Anh ơi, em đồng ý đi chơi với anh rùi nhé! {troll_note}"
+
+# =========================================================================
+# 🔔 CẤU HÌNH THÔNG BÁO VỀ ZALO (NOTIFICATION CONFIG)
+# =========================================================================
+# Toàn bộ Token, Chat ID và Số điện thoại đã được lưu an toàn trong Cloudflare Worker.
+# File config này chỉ cần chứa URL Worker, hoàn toàn bảo mật và không bị lộ key trên GitHub!
+notification:
+  # CỔNG API CLOUDFLARE WORKER (Bảo mật 100%):
+  api_url: "https://happy.nguyenhoangviethung.workers.dev"
+
+  # CÁCH PHỤ (TÙY CHỌN - Nếu muốn gửi thêm Telegram hoặc Webhook khác):
+  telegram_bot_token: ""
+  telegram_chat_id: ""
+  webhook_url: ""

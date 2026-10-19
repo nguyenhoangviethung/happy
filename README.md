@@ -2,73 +2,104 @@
 
 Một mẫu thiệp trực tuyến tương tác 3D mô phỏng phong thư phong cách cổ điển sang trọng (Vintage Wax Seal Letter) với hiệu ứng con dấu sáp, lá thư trượt mở mượt mà, pháo hoa giấy confetti, chim bồ câu origami, mây trôi và nhạc nền lãng mạn.
 
-Thiết kế tối ưu chạy ngay trên **GitHub Pages**, trình duyệt máy tính, điện thoại di động (iOS/Android) mà không cần backend hay database.
+Đi kèm **2 nút bấm tương tác đặc biệt**:
+1. 🎁 **Chọn món quà**: Chạm mở hộp quà bí mật, bắn pháo hoa kèm ảnh và lời nhắn ngọt ngào.
+2. 📅 **Chọn lịch đi chơi & Nút troll "Không đi"**:
+   - Chọn ngày giờ và hoạt động đi chơi.
+   - Nút troll *"Không đi"* né chuột/ngón tay, đổi câu troll hài hước, phóng to nút Đồng ý.
+   - **Đếm chính xác số lần cô ấy bấm nút troll**, hiển thị thống kê khi chốt kèo và hỗ trợ gửi thông báo tức thì về điện thoại!
 
 ---
 
 ## 🚀 Hướng Dẫn Chạy Trên GitHub Pages
 
-1. **Tạo repository mới** trên GitHub (ví dụ: `thiep-yeu-thuong`).
-2. **Tải 2 file lên repository**:
+1. **Tải toàn bộ thư mục lên GitHub repository**:
    - `index.html`
+   - `config.yaml`
+   - `config.js`
    - `music.mp3`
-3. **Bật GitHub Pages**:
+2. **Bật GitHub Pages**:
    - Vào mục **Settings** của repository -> Chọn **Pages** (ở menu bên trái).
    - Tại mục **Build and deployment** -> **Branch**: Chọn `main` (hoặc `master`), thư mục `/ (root)`.
    - Bấm **Save**.
-4. Chờ khoảng 1-2 phút, bạn sẽ nhận được đường link trực tiếp (ví dụ: `https://<ten-user>.github.io/thiep-yeu-thuong/`) để gửi cho người thương!
+3. Chờ khoảng 1-2 phút, bạn sẽ có link trực tiếp dạng: `https://<ten-user>.github.io/<ten-repo>/`.
 
 ---
 
-## 🎨 Tùy Chỉnh Nội Dung Dễ Dàng Trong `config.yaml`
+## 🎨 Tùy Chỉnh Toàn Diện Trong `config.yaml`
 
-Bạn **chỉ cần mở file `config.yaml`** (định dạng YAML siêu gọn gàng, thoáng mắt, không cần ngoặc nhọn hay dấu chấm phẩy) và chỉnh sửa:
+Bạn chỉ cần mở file [`config.yaml`](file:///home/bear/Documents/Workspace/Thiep/config.yaml) để chỉnh sửa:
 
 ```yaml
 # 1. Tiêu đề thiệp (hiển thị đầu thư và tab trình duyệt)
 title: "Anh iu em"
 
-# 2. Chế độ hiển thị tiêu đề:
-# - false: Hiện chữ tiêu đề (Ví dụ: "ANH IU EM")
-# - true:  Ẩn chữ, thay bằng hoa văn dây leo trái tim xoay tròn cổ điển
+# 2. false: Hiện chữ tiêu đề | true: Hiện hoa văn trái tim xoay vintage
 hide_title: false
 
-# 3. Chọn màu sắc chủ đề giao diện (Từ 1 đến 10):
+# 3. Chọn màu sắc chủ đề (1 đến 10)
 theme: 1
 
-# 4. Tên file nhạc (ví dụ: ./music.mp3)
+# 4. File nhạc nền
 music: "./music.mp3"
 
-# 5. Nội dung bức thư (Mỗi gạch đầu dòng là 1 đoạn văn, thoải mái chèn emoji ❤️✨):
+# 5. Nội dung bức thư
 messages:
   - "Gửi em yêu thương,"
   - "Anh sẽ đón em vào một ngày không xa..."
-  - "Cảm ơn em vì đã luôn ở bên cạnh anh, mang đến cho anh những nụ cười rạng rỡ và những khoảnh khắc ấm áp nhất."
   - "Chúc em luôn vui vẻ, xinh đẹp và hạnh phúc mỗi ngày! ❤️✨"
   - "Yêu em rất nhiều!"
+
+# 6. Cấu hình món quà
+gift:
+  button_text: "🎁 Mở Quà Của Em"
+  title: "Món Quà Dành Riêng Cho Em"
+  image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop"
+  message: "Một món quà nhỏ cùng tất cả sự yêu thương dành riêng cho em. Mong nụ cười này sẽ luôn ở trên môi em nhé! ❤️"
+
+# 7. Cấu hình rủ đi chơi & nút troll (Đơn giản, chỉ cần hỏi Có đi hay không)
+date_plan:
+  button_text: "Đi chơi hong"
+  title: "Đi chơi với anh nhé? 🥰"
+  subtitle: "Anh đón em đi dạo phố và ăn những món em thích nha! ❤️"
+  agree_button_text: "Đi lun chứ! 🥰"
+  refuse_button_text: "Không đi 😜"
+
+# 8. Cấu hình thông báo về Zalo & Điện thoại
+notification:
+  # Cách 1: Zalo (Người ấy chốt kèo sẽ tự copy tin nhắn kèm số lần troll và mở Zalo gửi cho bạn)
+  zalo_phone: "0912345678"
+
+  # Cách 2: Báo tin ngầm tự động 100% qua Telegram Bot (Hoàn toàn miễn phí, cô ấy không biết)
+  telegram_bot_token: ""
+  telegram_chat_id: ""
+
+  # Cách 3: Webhook tùy chọn (Google Sheet / Make.com / Discord)
+  webhook_url: ""
 ```
-
-*(Trang web cũng đi kèm `config.js` để tự động làm dự phòng trong trường hợp mở trực tiếp file nội bộ).*
-
-### 10 Bộ Chủ Đề Màu Sắc Có Sẵn:
-1. **Theme 1 - Hồng Ngọt Ngào**: Tình yêu, Valentine, 20/10, 8/3.
-2. **Theme 2 - Đỏ Nồng Nàn**: Kỷ niệm tình yêu, ngày cưới, may mắn.
-3. **Theme 3 - Xanh Biển Hy Vọng**: Thanh mát, bạn bè, tri kỷ.
-4. **Theme 4 - Xanh Mint Tươi Mới**: Sinh nhật, tuổi trẻ, năng động.
-5. **Theme 5 - Vàng Nắng Ấm Áp**: Biết ơn, tri ân, 20/11.
-6. **Theme 6 - Tím Oải Hương**: Lãng mạn, chung thủy, mộng mơ.
-7. **Theme 7 - Cam Đào Sum Vầy**: Ấm cúng, gia đình.
-8. **Theme 8 - Xanh Matcha An Yên**: Bình an, nhẹ nhàng, sức khỏe.
-9. **Theme 9 - Xanh Sapphire Quý Phái**: Sang trọng, thành công, đối tác.
-10. **Theme 10 - Trắng Sữa Vàng Kem**: Tinh khôi, hoài niệm vintage cổ điển.
 
 ---
 
-## 💡 Các Tính Năng Nổi Bật
+---
 
-- **Bao thư 3D với con dấu sáp (Wax Seal)**: Chạm nhẹ vào con dấu để bẻ sáp, nắp thư mở theo không gian 3D, kèm âm thanh pop & chimes cùng pháo hoa confetti bay tung tóe.
-- **Lá thư cuộn mượt mà**: Tự động đo kích cỡ chữ (Typography thông minh), thanh tiến trình đọc ở mép thư, nút gợi ý cuộn xuống và nút đóng thư về bao thư ban đầu.
-- **Nhạc nền & Điều khiển**: Nút bật/tắt nhạc với biểu tượng sóng âm thanh chuyển động, nút bật/tắt toàn màn hình (Fullscreen).
-- **Họa tiết sinh động**: Đàn chim origami đập cánh bay lượn trên bầu trời, các tầng mây bồng bềnh và hạt bụi sao lấp lánh (Canvas Ambient).
-- **100% Thuần Web (HTML5/CSS3/JS)**: Không phụ thuộc máy chủ, hỗ trợ cả `file:///` lẫn HTTPS.
+## 🕵️ Cách Hoạt Động & Nhận Thông Báo Số Lần Bấm Troll
+
+Trên nền tảng GitHub Pages (HTML tĩnh), hệ thống hỗ trợ giải pháp bảo mật và tối ưu nhất:
+
+### 🛡️ Cách 1: Báo tin ngầm tự động 100% qua Cloudflare Worker (Bảo mật - Khuyên dùng)
+- Tạo Cloudflare Worker làm proxy trung gian để giấu toàn bộ Token Zalo Bot / Telegram / Phone.
+- Điền URL Worker vào `notification.api_url` trong `config.yaml`:
+  ```yaml
+  notification:
+    api_url: "https://happy.nguyenhoangviethung.workers.dev"
+  ```
+- **Ưu điểm**:
+  - Không lộ bất kỳ Token hay Chat ID nào trên GitHub Pages (an toàn kể cả với Public Repository).
+  - Mỗi lần cô ấy bấm *"Không đi"*, hệ thống gửi tin ngầm về Zalo:
+    `"🚨 [THIỆP ONLINE]: Người ấy vừa bấm nút 'Không đi' lần thứ 3! 😜"`
+  - Khi cô ấy bấm *"Đi lun chứ!"* hoặc bấm nút báo Zalo:
+    `"🎉 [THIỆP ONLINE]: CHỐT KÈO THÀNH CÔNG! Số lần bấm 'Không đi' trước đó: 5 lần ❤️"`
+
+### 🔔 Cách 2: Báo tin qua Telegram Bot hoặc Webhook tùy chọn
+- Điền `telegram_bot_token` và `telegram_chat_id` hoặc `webhook_url` vào `config.yaml` nếu bạn muốn gửi thêm thông báo qua các kênh khác.
 
