@@ -1,0 +1,37 @@
+# =========================================================================
+# 💌 BẢNG CẤU HÌNH THIỆP (CONFIG.YAML)
+# =========================================================================
+# Định dạng YAML trực quan, dễ nhìn và dễ chỉnh sửa.
+# Bạn chỉ cần thay đổi các thông tin bên dưới theo ý muốn:
+
+# 1. Tiêu đề thiệp (hiển thị trên đầu lá thư và tab trình duyệt)
+title: "Anh iu em"
+
+# 2. Chế độ hiển thị tiêu đề:
+# - false: Hiện chữ tiêu đề (Ví dụ: "ANH IU EM")
+# - true:  Ẩn chữ, thay bằng hoa văn dây leo trái tim xoay tròn cổ điển
+hide_title: false
+
+# 3. Chủ đề màu sắc giao diện (Chọn từ 1 đến 10):
+#  1: Hồng ngọt ngào (Tình yêu, Valentine, 20-10, 8-3)
+#  2: Đỏ nồng nàn    (Kỷ niệm, Lễ cưới, Lãng mạn)
+#  3: Xanh biển      (Hy vọng, Tự do, Bình yên)
+#  4: Xanh mint      (Tươi mát, Tuổi trẻ, Sinh nhật)
+#  5: Vàng nắng      (Tri ân, Nắng mai, Ấm áp)
+#  6: Tím oải hương  (Mộng mơ, Thủy chung)
+#  7: Cam đào        (Sum vầy, Ngọt ngào, Gần gũi)
+#  8: Xanh matcha    (An yên, Nhẹ nhàng, Sức khỏe)
+#  9: Xanh sapphire  (Quý phái, Sang trọng, Thành công)
+# 10: Trắng kem      (Vintage hoài niệm, Tinh khôi)
+theme: 1
+
+# 4. Nhạc nền (Tên file âm thanh đặt cùng thư mục)
+music: "./music.mp3"
+
+# 5. Nội dung bức thư (Mỗi gạch đầu dòng là một đoạn văn, hỗ trợ emoji ❤️✨):
+messages:
+  - "Gửi em yêu thương,"
+  - "Anh sẽ đón em vào một ngày không xa..."
+  - "Cảm ơn em vì đã luôn ở bên cạnh anh, mang đến cho anh những nụ cười rạng rỡ và những khoảnh khắc ấm áp nhất."
+  - "Chúc em luôn vui vẻ, xinh đẹp và hạnh phúc mỗi ngày! ❤️✨"
+  - "Yêu em rất nhiều!"

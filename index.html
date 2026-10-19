@@ -4797,5 +4797,124 @@
             fullscreenManager.init();
         });
     </script>
-            </body>
+
+    <!-- BỘ TỰ ĐỘNG NẠP CẤU HÌNH TỪ CONFIG.YAML (NẾU CÓ) -->
+    <script>
+        function parseSimpleYaml(yamlText) {
+            const lines = yamlText.split(/\r?\n/);
+            const result = {};
+            let currentKey = null;
+            let isBlock = false;
+            let blockLines = [];
+
+            for (let i = 0; i < lines.length; i++) {
+                let line = lines[i];
+                const trimmed = line.trim();
+
+                if (isBlock) {
+                    if (line.startsWith('  ') || line.startsWith('\t') || !trimmed) {
+                        blockLines.push(line.replace(/^\s{2}/, ''));
+                        continue;
+                    } else {
+                        result[currentKey] = blockLines.join('\n').trim();
+                        isBlock = false;
+                        blockLines = [];
+                    }
+                }
+
+                if (!trimmed || trimmed.startsWith('#')) continue;
+
+                if (trimmed.startsWith('- ') && currentKey) {
+                    let item = trimmed.slice(2).trim();
+                    if ((item.startsWith('"') && item.endsWith('"')) || (item.startsWith("'") && item.endsWith("'"))) {
+                        item = item.slice(1, -1);
+                    }
+                    if (!Array.isArray(result[currentKey])) {
+                        result[currentKey] = [];
+                    }
+                    result[currentKey].push(item);
+                    continue;
+                }
+
+                const colonIdx = line.indexOf(':');
+                if (colonIdx !== -1) {
+                    const key = line.slice(0, colonIdx).trim();
+                    let val = line.slice(colonIdx + 1).trim();
+
+                    currentKey = key;
+
+                    if (val.includes(' #') && !val.startsWith('"') && !val.startsWith("'")) {
+                        val = val.slice(0, val.indexOf(' #')).trim();
+                    }
+
+                    if (val === '|' || val === '>') {
+                        isBlock = true;
+                        blockLines = [];
+                        continue;
+                    }
+
+                    if (val === '') {
+                        result[key] = [];
+                        continue;
+                    }
+
+                    if ((val.startsWith('"') && val.endsWith('"')) || (val.startsWith("'") && val.endsWith("'"))) {
+                        val = val.slice(1, -1);
+                    } else if (val.toLowerCase() === 'true') {
+                        val = true;
+                    } else if (val.toLowerCase() === 'false') {
+                        val = false;
+                    } else if (!isNaN(Number(val)) && val !== '') {
+                        val = Number(val);
+                    }
+
+                    result[key] = val;
+                }
+            }
+
+            if (isBlock && currentKey) {
+                result[currentKey] = blockLines.join('\n').trim();
+            }
+
+            return result;
+        }
+
+        async function initYamlConfig() {
+            try {
+                const resp = await fetch('config.yaml?v=' + Date.now());
+                if (!resp.ok) return;
+                const text = await resp.text();
+                const cfg = parseSimpleYaml(text);
+                if (cfg) {
+                    console.log('✅ Đã nạp thành công cấu hình từ config.yaml:', cfg);
+                    if (cfg.title) {
+                        document.title = cfg.title;
+                        if (window.setTitle) window.setTitle(cfg.title);
+                    }
+                    if (typeof cfg.hide_title !== 'undefined') {
+                        if (window.setTitleVisible) window.setTitleVisible(!cfg.hide_title);
+                    }
+                    if (cfg.messages) {
+                        const msgText = Array.isArray(cfg.messages) ? cfg.messages.join('\n\n') : cfg.messages;
+                        if (window.setMessage) window.setMessage(msgText);
+                    }
+                    if (cfg.theme && window.setTheme) {
+                        window.setTheme(cfg.theme);
+                    }
+                    if (cfg.music && window.musicManager && window.musicManager._setupAudio) {
+                        window.musicManager._setupAudio(cfg.music);
+                    }
+                }
+            } catch (err) {
+                console.log('ℹ️ Sử dụng cấu hình từ config.js');
+            }
+        }
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initYamlConfig);
+        } else {
+            initYamlConfig();
+        }
+    </script>
+</body>
 </html>

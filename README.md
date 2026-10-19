@@ -20,36 +20,35 @@ Thiết kế tối ưu chạy ngay trên **GitHub Pages**, trình duyệt máy t
 
 ---
 
-## 🎨 Tùy Chỉnh Nội Dung Trong `config.js`
+## 🎨 Tùy Chỉnh Nội Dung Dễ Dàng Trong `config.yaml`
 
-Bạn **chỉ cần mở file `config.js`** và chỉnh sửa các dòng sau:
+Bạn **chỉ cần mở file `config.yaml`** (định dạng YAML siêu gọn gàng, thoáng mắt, không cần ngoặc nhọn hay dấu chấm phẩy) và chỉnh sửa:
 
-```javascript
-window.CONFIG = {
-    // 1. Tiêu đề thiệp
-    title: "Anh iu em",
+```yaml
+# 1. Tiêu đề thiệp (hiển thị đầu thư và tab trình duyệt)
+title: "Anh iu em"
 
-    // 2. Chế độ hiển thị tiêu đề:
-    // - false: Hiện chữ tiêu đề (Ví dụ: "ANH IU EM")
-    // - true:  Ẩn chữ, thay bằng hoa văn dây leo trái tim xoay tròn cổ điển
-    hide_title: false,
+# 2. Chế độ hiển thị tiêu đề:
+# - false: Hiện chữ tiêu đề (Ví dụ: "ANH IU EM")
+# - true:  Ẩn chữ, thay bằng hoa văn dây leo trái tim xoay tròn cổ điển
+hide_title: false
 
-    // 3. Nội dung bức thư (Có thể viết nhiều đoạn, xuống dòng, chèn emoji):
-    messages: [
-        "Gửi em yêu thương,",
-        "Anh sẽ đón em vào một ngày không xa...",
-        "Cảm ơn em vì đã luôn ở bên cạnh anh, mang đến cho anh những nụ cười rạng rỡ và những khoảnh khắc ấm áp nhất.",
-        "Chúc em luôn vui vẻ, xinh đẹp và hạnh phúc mỗi ngày! ❤️✨",
-        "Yêu em rất nhiều!"
-    ],
+# 3. Chọn màu sắc chủ đề giao diện (Từ 1 đến 10):
+theme: 1
 
-    // 4. Chọn màu sắc chủ đề (Từ 1 đến 10)
-    theme: 1,
+# 4. Tên file nhạc (ví dụ: ./music.mp3)
+music: "./music.mp3"
 
-    // 5. Tên file nhạc bạn tải về đặt cùng thư mục (ví dụ: ./music.mp3)
-    music: "./music.mp3"
-};
+# 5. Nội dung bức thư (Mỗi gạch đầu dòng là 1 đoạn văn, thoải mái chèn emoji ❤️✨):
+messages:
+  - "Gửi em yêu thương,"
+  - "Anh sẽ đón em vào một ngày không xa..."
+  - "Cảm ơn em vì đã luôn ở bên cạnh anh, mang đến cho anh những nụ cười rạng rỡ và những khoảnh khắc ấm áp nhất."
+  - "Chúc em luôn vui vẻ, xinh đẹp và hạnh phúc mỗi ngày! ❤️✨"
+  - "Yêu em rất nhiều!"
 ```
+
+*(Trang web cũng đi kèm `config.js` để tự động làm dự phòng trong trường hợp mở trực tiếp file nội bộ).*
 
 ### 10 Bộ Chủ Đề Màu Sắc Có Sẵn:
 1. **Theme 1 - Hồng Ngọt Ngào**: Tình yêu, Valentine, 20/10, 8/3.
