@@ -61,26 +61,24 @@
 
 <title>Anh iu em</title>
 
+<!-- NẠP BẢNG CẤU HÌNH TỪ FILE CONFIG.JS -->
+<script src="config.js"></script>
 <script>
-    // =========================================================================
-    // CẤU HÌNH THIỆP (BẠN CÓ THỂ CHỈNH SỬA TẠI ĐÂY)
-    // =========================================================================
-    window.dataLetterV14 = {
-        template: "letter-v14",
-        data: {
-            title: "Anh iu em",         // Tiêu đề thư
-            hide_title: true,           // true: Hiện hoa văn trái tim vintage xoay tròn | false: Hiện chữ tiêu đề
-            messages: "hihìaawfwafwaff",// Nội dung lời chúc (hỗ trợ xuống dòng)
-            theme: 1,                   // Chủ đề màu sắc (từ 1 đến 10)
-            fonts: {
-                content: {
-                    messages: "Noto Sans"
-                }
-            },
-            type_music: "system",
-            backgroundMusic: "./music.mp3" // File nhạc cục bộ hoặc link MP3 online
-        }
-    };
+    // Dự phòng an toàn nếu chưa có config.js
+    if (!window.dataLetterV14) {
+        window.dataLetterV14 = {
+            template: "letter-v14",
+            data: {
+                title: "Anh iu em",
+                hide_title: false,
+                messages: "Gửi em yêu thương,\n\nChúc em một ngày luôn ngập tràn niềm vui và hạnh phúc! ❤️✨",
+                theme: 1,
+                fonts: { content: { messages: "Noto Sans" } },
+                type_music: "system",
+                backgroundMusic: "./music.mp3"
+            }
+        };
+    }
 </script>
 
 

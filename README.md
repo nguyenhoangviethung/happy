@@ -20,21 +20,34 @@ Thiết kế tối ưu chạy ngay trên **GitHub Pages**, trình duyệt máy t
 
 ---
 
-## 🎨 Tùy Chỉnh Nội Dung & Giao Diện
+## 🎨 Tùy Chỉnh Nội Dung Trong `config.js`
 
-Bạn có thể chỉnh sửa trực tiếp cấu hình ở đầu file `index.html` (trong thẻ `<script>`):
+Bạn **chỉ cần mở file `config.js`** và chỉnh sửa các dòng sau:
 
 ```javascript
-window.dataLetterV14 = {
-    template: "letter-v14",
-    data: {
-        title: "Anh iu em", // Tiêu đề thư
-        hide_title: false,  // true: Hiện hoa văn trái tim vintage xoay tròn | false: Hiện tiêu đề chữ
-        messages: "Gửi em yêu thương,\n\nChúc em một ngày luôn ngập tràn niềm vui, nụ cười rạng rỡ và những điều ngọt ngào nhất. Cảm ơn em vì đã luôn ở bên cạnh anh! ❤️✨",
-        theme: 1,           // Chọn chủ đề màu từ 1 đến 10
-        type_music: "system",
-        backgroundMusic: "./music.mp3" // File nhạc cục bộ hoặc link MP3 online
-    }
+window.CONFIG = {
+    // 1. Tiêu đề thiệp
+    title: "Anh iu em",
+
+    // 2. Chế độ hiển thị tiêu đề:
+    // - false: Hiện chữ tiêu đề (Ví dụ: "ANH IU EM")
+    // - true:  Ẩn chữ, thay bằng hoa văn dây leo trái tim xoay tròn cổ điển
+    hide_title: false,
+
+    // 3. Nội dung bức thư (Có thể viết nhiều đoạn, xuống dòng, chèn emoji):
+    messages: [
+        "Gửi em yêu thương,",
+        "Anh sẽ đón em vào một ngày không xa...",
+        "Cảm ơn em vì đã luôn ở bên cạnh anh, mang đến cho anh những nụ cười rạng rỡ và những khoảnh khắc ấm áp nhất.",
+        "Chúc em luôn vui vẻ, xinh đẹp và hạnh phúc mỗi ngày! ❤️✨",
+        "Yêu em rất nhiều!"
+    ],
+
+    // 4. Chọn màu sắc chủ đề (Từ 1 đến 10)
+    theme: 1,
+
+    // 5. Tên file nhạc bạn tải về đặt cùng thư mục (ví dụ: ./music.mp3)
+    music: "./music.mp3"
 };
 ```
 
@@ -59,3 +72,4 @@ window.dataLetterV14 = {
 - **Nhạc nền & Điều khiển**: Nút bật/tắt nhạc với biểu tượng sóng âm thanh chuyển động, nút bật/tắt toàn màn hình (Fullscreen).
 - **Họa tiết sinh động**: Đàn chim origami đập cánh bay lượn trên bầu trời, các tầng mây bồng bềnh và hạt bụi sao lấp lánh (Canvas Ambient).
 - **100% Thuần Web (HTML5/CSS3/JS)**: Không phụ thuộc máy chủ, hỗ trợ cả `file:///` lẫn HTTPS.
+
