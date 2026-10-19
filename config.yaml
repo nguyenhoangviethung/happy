@@ -8,7 +8,6 @@
 title: "Tặng Vy nè"
 
 # 2. Chế độ hiển thị tiêu đề:
-# - false: Hiện chữ tiêu đề (Ví dụ: "Bơ IU EM")
 # - true:  Ẩn chữ, thay bằng hoa văn dây leo trái tim xoay tròn cổ điển
 hide_title: false
 
@@ -23,13 +22,14 @@ hide_title: false
 #  8: XBơ matcha    (An yên, Nhẹ nhàng, Sức khỏe)
 #  9: XBơ sapphire  (Quý phái, Sang trọng, Thành công)
 # 10: Trắng kem      (Vintage hoài niệm, Tinh khôi)
-theme: 5
+theme:  3
 
 # 4. Nhạc nền (Tên file âm thBơ đặt cùng thư mục)
 music: "./music.mp3"
 
 # 5. Nội dung bức thư (Mỗi gạch đầu dòng là 1 đoạn văn, thoải mái chèn emoji ❤️✨):
 messages:
+  - "Chúc Vy ngày 20/10 thật vui vẻ và hạnh phúc nha! 🌹"
   - "Bơ sẽ đón Vy vào một ngày không xa..."
   - "Mỗi ngày nhắn tin với cậu tớ đều thấy rất vui."
   - "Hi vọng thời gian tới tớ sẽ có cơ hội được vui nhiều hơn.❤️✨"
@@ -39,7 +39,7 @@ messages:
 # =========================================================================
 gift:
   button_text: "Gift"
-  title: "Món nè"
+  title: "Quà nè"
   # Bạn có thể để link ảnh online hoặc file ảnh cùng thư mục (ví dụ: ./gift.jpg)
   image: "https://images.unsplash.com/photo-1549465220-1a8b9238cd48?q=80&w=800&auto=format&fit=crop"
   message: "Tớ biết rồi nha ehehe, tớ chuẩn bị rồi, chỉ đợi đưa thoai❤️"
