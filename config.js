@@ -7,7 +7,7 @@
 
 window.CONFIG = {
     // 1. Tiêu đề thiệp
-    title: "Anh iu em",
+    title: "Happy Women's Day 20/10",
 
     // 2. Ẩn chữ tiêu đề (false: Hiện chữ | true: Hiện hoa văn trái tim xoay)
     hide_title: false,
