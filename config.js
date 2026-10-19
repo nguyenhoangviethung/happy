@@ -45,6 +45,7 @@ window.CONFIG = {
         success_title: "CHỐT KÈO THÀNH CÔNG! 🎉",
         success_subtitle: "Anh biết là em sẽ đồng ý mà! Anh qua đón em liền nha! Hehe ❤️",
         success_troll_prefix: "Bật mí: Em đã bấm nút \"Không đi\" tận {count} lần nhưng cuối cùng vẫn đồng ý nè! ❤️",
+        success_heart_image: "heart-tunnel.gif",
 
         // Cấu hình nút gửi qua Bot Zalo (Bấm là gửi thẳng tin nhắn về Zalo của anh, không cần mở app):
         success_button_text: "💬 Báo cho anh qua Zalo liền nha!",

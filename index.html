@@ -347,14 +347,40 @@
         }
 
         /* THÀNH CÔNG */
-        .success-heart-badge {
-            font-size: 3.2rem;
-            animation: heartBounceAnim 1.2s ease-in-out infinite alternate;
+        .success-heart-container {
+            width: 140px;
+            height: 95px;
+            margin: 0 auto 10px auto;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 8px 24px rgba(244, 63, 94, 0.35);
+            border: 2.5px solid #ffccd5;
+            background: #ffe4e6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
 
-        @keyframes heartBounceAnim {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.15); }
+        .success-heart-container.is-completed {
+            transform: scale(1.1);
+            width: 160px;
+            height: 108px;
+            box-shadow: 0 12px 32px rgba(244, 63, 94, 0.5), 0 0 20px rgba(255, 107, 129, 0.45);
+            border-color: #ff3366;
+            animation: heartPulseGlow 1.8s infinite ease-in-out alternate;
+        }
+
+        @keyframes heartPulseGlow {
+            0% { transform: scale(1.08); filter: drop-shadow(0 0 4px rgba(255, 71, 126, 0.4)); }
+            100% { transform: scale(1.15); filter: drop-shadow(0 0 14px rgba(255, 71, 126, 0.8)); }
+        }
+
+        .success-heart-tunnel {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .success-title {
@@ -5310,7 +5336,9 @@
 
             <!-- MÀN HÌNH CHỐT KÈO THÀNH CÔNG -->
             <div id="dateSuccessContent" style="display: none;">
-                <div class="success-heart-badge">💖</div>
+                <div class="success-heart-container" id="successHeartContainer">
+                    <img id="successHeartImg" class="success-heart-tunnel" src="heart-tunnel.gif" alt="Trái tim chuyển động từ trong ra ngoài" />
+                </div>
                 <h3 class="success-title" id="successTitle">CHỐT KÈO THÀNH CÔNG! 🎉</h3>
                 <p class="success-desc" id="successDesc">Anh biết là em sẽ đồng ý mà! Anh qua đón em liền nha! Hehe ❤️</p>
 
@@ -5467,16 +5495,16 @@
 
         const trollPhrases = [
             "Không đi 😜",
-            "Ơ kìa, em bấm nhầm đúng hơm? 🥺",
-            "Nút này bị kẹt rùi em ơi! 😂",
+            "Ơ kìa, Vy bấm nhầm đúng hơm? 🥺",
+            "Nút này bị kẹt rùi Vy ơi! 😂",
             "Năn nỉ đó, đồng ý đi màaa 😭",
             "Anh khóc một dòng sông bây giờ đấy! 😿",
             "Từ chối là không có trà sữa đâu nhen! 🧋",
             "Bấm lại đi, anh cho chọn thêm quà nữa! 🎁",
             "Nút này hỏng thật rồi, bấm nút kia đi! 👉",
-            "Em không thoát khỏi bàn tay này đâu hehe! ❤️",
+            "Vy không thoát khỏi bàn tay này đâu hehe! ❤️",
             "Vẫn bấm nữa hả? Bướng thế nhờ! 😤",
-            "Chịu thua em lun... nhưng vẫn phải ĐI! 💖"
+            "Chịu thua Vy lun... nhưng vẫn phải ĐI! 💖"
         ];
 
         // Phát âm thanh vui nhộn (Web Audio API)
@@ -5725,6 +5753,8 @@
             const successTitleEl = document.getElementById('successTitle');
             const successDescEl = document.getElementById('successDesc');
             const trollStatAlertEl = document.getElementById('trollStatAlert');
+            const successHeartContainer = document.getElementById('successHeartContainer');
+            const successHeartImg = document.getElementById('successHeartImg');
 
             // Nạp nội dung cấu hình cho màn hình thành công
             if (cfg.date_plan?.success_title && successTitleEl) {
@@ -5736,6 +5766,9 @@
             if (cfg.date_plan?.success_button_text && btnSendLabel) {
                 btnSendLabel.textContent = cfg.date_plan.success_button_text;
             }
+            if (cfg.date_plan?.success_heart_image && successHeartImg) {
+                successHeartImg.src = cfg.date_plan.success_heart_image;
+            }
 
             btnAgree.onclick = () => {
                 if (typeof confetti === 'function') {
@@ -5744,6 +5777,13 @@
 
                 datePlanContent.style.display = 'none';
                 dateSuccessContent.style.display = 'block';
+
+                if (successHeartContainer) {
+                    successHeartContainer.classList.remove('is-completed');
+                }
+                if (cfg.date_plan?.success_heart_image && successHeartImg) {
+                    successHeartImg.src = cfg.date_plan.success_heart_image;
+                }
 
                 // Bật mí số lần bấm troll theo template
                 if (cfg.date_plan?.success_troll_prefix && trollStatAlertEl) {
@@ -5768,11 +5808,11 @@
                     sendStatusText.innerHTML = '';
                 }
 
-                // Tự động báo cáo chốt kèo ngầm qua Bot Zalo
+                // Tự động báo cáo chốt kèo ngầm qua Cloudflare Worker / Zalo Bot
                 sendNotification('agree', trollCount);
             };
 
-            // NÚT BÁO QUA ZALO CHO ANH (BẤM PHÁT GỬI NGAY QUA BOT, KHÔNG CẦN ALERT)
+            // NÚT BÁO QUA ZALO CHO ANH (KHI TẤT CẢ THAO TÁC HOÀN TẤT)
             if (btnSend) {
                 btnSend.onclick = async () => {
                     const countNote = trollCount > 0 ? ` (Dù em đã bấm 'Không đi' tận ${trollCount} lần mới chịu đó 😜❤️)` : ` ❤️✨`;
@@ -5786,9 +5826,14 @@
                         await sendNotification('custom', trollCount, customMsg);
                     } catch (e) {}
 
+                    // ĐÁNH DẤU HOÀN TẤT TẤT CẢ THAO TÁC: Kích hoạt hiệu ứng trái tim chuyển động lan toả
                     btnSend.classList.add('sent');
                     if (btnSendLabel) {
                         btnSendLabel.textContent = cfg.date_plan?.success_sent_text || "✅ Đã gửi tới Zalo của anh rùi nè! 🥰";
+                    }
+
+                    if (successHeartContainer) {
+                        successHeartContainer.classList.add('is-completed');
                     }
 
                     if (sendStatusText) {
@@ -5797,7 +5842,7 @@
                     }
 
                     if (typeof confetti === 'function') {
-                        confetti({ particleCount: 80, spread: 70, origin: { y: 0.6 } });
+                        confetti({ particleCount: 100, spread: 80, origin: { y: 0.55 } });
                     }
                 };
             }
